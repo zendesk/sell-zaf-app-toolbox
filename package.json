@@ -1,6 +1,6 @@
 {
-  "name": "@zendesk/zaf-app-utils-for-sell",
-  "version": "0.0.18",
+  "name": "@zendesk/sell-zaf-app-toolbox",
+  "version": "1.0.0",
   "description": "A package for developers that streamlines the building of Zendesk App Framework apps for Sell",
   "main": "./dist/main.js",
   "types": "./dist/index.d.ts",
@@ -14,14 +14,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zendesk/zaf-app-utils-for-sell.git"
+    "url": "git+https://github.com/zendesk/sell-zaf-app-toolbox.git"
   },
   "author": "",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/zendesk/zaf-app-utils-for-sell/issues"
+    "url": "https://github.com/zendesk/sell-zaf-app-toolbox/issues"
   },
-  "homepage": "https://github.com/zendesk/zaf-app-utils-for-sell#readme",
+  "homepage": "https://github.com/zendesk/sell-zaf-app-toolbox#readme",
   "dependencies": {
     "memoize-one": "^5.0.5"
   },
