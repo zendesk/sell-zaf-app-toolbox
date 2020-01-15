@@ -1,8 +1,0 @@
-version: '3.7'
-services:
-  app:
-    build: .
-    volumes:
-      - ./:/app
-      - /.secrets/:/secrets
-    command: sleep infinity
