@@ -1,6 +1,6 @@
-# @zendesk/zaf-app-utils-for-sell
+# @zendesk/sell-zaf-app-toolbox
 
-@zendesk/zaf-app-utils-for-sell package delivers a bunch of useful methods, hooks and components that help you build React apps integrated with Zendesk Sell quicker and with less effort. They use Zendesk's App Framework(ZAF) Client under the hood.
+@zendesk/sell-zaf-app-toolbox package delivers a bunch of useful methods, hooks and components that help you build React apps integrated with Zendesk Sell quicker and with less effort. They use Zendesk's App Framework(ZAF) Client under the hood.
 
 ### Hooks
 
