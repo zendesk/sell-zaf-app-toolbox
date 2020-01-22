@@ -5,14 +5,14 @@ export interface Metadata<T> {
     installationId: number;
     settings: T;
 }
-export declare enum AppLocations {
+export declare enum AppLocation {
     dealCard = "deal_card",
     leadCard = "lead_card",
     personCard = "person_card",
     companyCard = "company_card",
-    modal = "modal"
+    modal = "modal",
+    background = "background"
 }
-export declare type AppLocation = 'deal_card' | 'lead_card' | 'person_card' | 'company_card' | 'modal';
 export interface Context {
     product: string;
     location: AppLocation;

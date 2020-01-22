@@ -2,13 +2,13 @@ import * as React from 'react'
 import {mount} from 'enzyme'
 
 import {ZAFClientContextProvider} from '../providers/ZAFClientContext'
-import {Client, FeedbackStatus, Context} from '../types'
+import {AppLocation, Client, Context, FeedbackStatus} from '../types'
 import useSellContactEmail from './useSellContactEmail'
 import flushPromises from '../test/flushPromises'
 
 const appContext: Context = {
   product: 'sell',
-  location: 'person_card',
+  location: AppLocation.personCard,
   instanceGuid: '12-323-4232-122fsfwe',
   account: {
     domain: 'my-sell-subdomain',

@@ -6,16 +6,15 @@ import {
   Feedback,
   FeedbackStatus,
   ClientResponse,
-  AppLocations,
 } from '../types'
 import {ZAFClientContext} from '../providers/ZAFClientContext'
 import {getAppContextAsync} from '../helpers/getAppContextAsync'
 
 const API_EMAIL_FIELD_PER_LOCATION = {
-  [AppLocations.personCard]: 'contact.email',
-  [AppLocations.companyCard]: 'contact.email',
-  [AppLocations.leadCard]: 'lead.email',
-  [AppLocations.dealCard]: 'deal.contact.email',
+  [AppLocation.personCard]: 'contact.email',
+  [AppLocation.companyCard]: 'contact.email',
+  [AppLocation.leadCard]: 'lead.email',
+  [AppLocation.dealCard]: 'deal.contact.email',
 }
 
 const getSellContactEmail = async (

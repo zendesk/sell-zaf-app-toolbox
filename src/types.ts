@@ -6,20 +6,14 @@ export interface Metadata<T> {
   settings: T
 }
 
-export enum AppLocations {
+export enum AppLocation {
   dealCard = 'deal_card',
   leadCard = 'lead_card',
   personCard = 'person_card',
   companyCard = 'company_card',
   modal = 'modal',
+  background = 'background',
 }
-
-export type AppLocation =
-  | 'deal_card'
-  | 'lead_card'
-  | 'person_card'
-  | 'company_card'
-  | 'modal'
 
 export interface Context {
   // eq. "sell"
