@@ -29,7 +29,6 @@ const getSellContactEmail = async (
     throw new Error(JSON.stringify(result.errors))
   return result[contactEmailField]
 }
-// {propertyName: string, oldValue: string, newValue: string}
 
 export function useSellContactEmail(): ClientResponse {
   const client = useContext(ZAFClientContext)
