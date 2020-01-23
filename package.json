@@ -1,6 +1,6 @@
 {
   "name": "@zendesk/sell-zaf-app-toolbox",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "description": "A package for developers that streamlines the building of Zendesk App Framework apps for Sell",
   "main": "./dist/main.js",
   "types": "./dist/index.d.ts",
@@ -35,7 +35,6 @@
     "@types/jest": "^24.0.11",
     "@types/react": "^16.8.8",
     "@types/react-dom": "^16.8.2",
-    "awesome-typescript-loader": "^5.2.1",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.12.1",
     "jest": "^24.7.1",
@@ -44,6 +43,7 @@
     "react-dom": "^16.8.6",
     "source-map-loader": "^0.2.4",
     "ts-jest": "^24.0.2",
+    "ts-loader": "6.2.1",
     "tslint": "^5.16.0",
     "tslint-config-prettier": "^1.18.0",
     "tslint-origin-ordered-imports-rule": "^1.2.2",

@@ -6,7 +6,7 @@ module.exports = (env = []) => {
       filename: '[name].js',
       path: __dirname + '/dist',
       library: 'zap-app-utils',
-      libraryTarget: 'umd'
+      libraryTarget: 'umd',
     },
 
     mode: 'development',
@@ -28,12 +28,11 @@ module.exports = (env = []) => {
 
     module: {
       rules: [
-        // All files with a '.ts' or '.tsx' extension will be handled/**/ by
-        // 'awesome-typescript-loader'.
+        // All files with a '.ts' or '.tsx' extension will be handled/**/ by 'ts-loader'.
         {
           test: /\.tsx?$/,
           // tslint:disable-next-line:object-literal-sort-keys
-          loader: 'awesome-typescript-loader',
+          loader: 'ts-loader',
         },
 
         // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
