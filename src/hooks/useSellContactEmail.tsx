@@ -7,6 +7,7 @@ import {
   FeedbackStatus,
   ClientResponse,
   AppLocations,
+  ChangedProperty,
 } from '../types'
 import {ZAFClientContext} from '../providers/ZAFClientContext'
 import {getAppContextAsync} from '../helpers/getAppContextAsync'
@@ -28,6 +29,7 @@ const getSellContactEmail = async (
     throw new Error(JSON.stringify(result.errors))
   return result[contactEmailField]
 }
+// {propertyName: string, oldValue: string, newValue: string}
 
 export function useSellContactEmail(): ClientResponse {
   const client = useContext(ZAFClientContext)
@@ -36,15 +38,24 @@ export function useSellContactEmail(): ClientResponse {
   const [feedback, setFeedback] = useState<Feedback | null>(null)
 
   const getSellContactEmailForLocation = async () => {
+    if (!client) {
+      throw new Error('You forgot to use ZAFClientContext')
+    }
+
     setFeedback({status: FeedbackStatus.loading})
     try {
-      if (!client) {
-        throw new Error('You forgot to use ZAFClientContext')
-      }
       const {location} = await getAppContextAsync(client)
       const result = await getSellContactEmail(client, location)
       setData(result)
       setFeedback({status: FeedbackStatus.success})
+
+      // listens to the contact email change
+      client.on(
+        `${API_EMAIL_FIELD_PER_LOCATION[location]}.changed`,
+        (property: ChangedProperty<string>) => {
+          setData(property.newValue)
+        },
+      )
     } catch (e) {
       setError(e)
       setFeedback({status: FeedbackStatus.error})

@@ -52,7 +52,7 @@ export interface Response<T> {
     feedback: Feedback | null;
 }
 export interface Client {
-    on: (event: string, callback: () => void) => void;
+    on: <T>(event: string, callback: (data?: T) => void) => void;
     invoke: <T>(name: string, ...options: any[]) => Promise<T>;
     get: <T>(name: string | string[]) => Promise<T>;
     set: <T>(name: string, value: string) => Promise<T>;
@@ -69,3 +69,8 @@ export declare enum ClientInvokeOptions {
     formatCurrency = "formatCurrency"
 }
 export declare const version = "0.0.5";
+export interface ChangedProperty<T> {
+    propertyName: string;
+    oldValue: T;
+    newValue: T;
+}
