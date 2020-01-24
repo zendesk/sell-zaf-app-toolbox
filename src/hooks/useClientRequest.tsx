@@ -54,6 +54,9 @@ export function useClientRequest<T>(
       setFeedback({status: FeedbackStatus.success})
     } catch (e) {
       if (cacheKey) delete cache[cacheKey]
+      // prevents by keeping data from previous request
+      // which sometimes caused that ResponseHandler acted unexpectedly
+      setData(null)
       setError(e)
       setFeedback({status: FeedbackStatus.error})
     }

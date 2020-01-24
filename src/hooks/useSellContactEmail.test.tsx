@@ -47,6 +47,7 @@ describe('useSellContactEmail', () => {
           ),
       ),
       context: jest.fn(() => new Promise((res) => res(appContext))),
+      on: jest.fn,
     }
 
     const tree = initTree(client)
