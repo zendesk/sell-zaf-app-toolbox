@@ -45,7 +45,9 @@ export function useSellContactEmail(): ClientResponse {
     setFeedback({status: FeedbackStatus.loading})
     try {
       const {location} = await getAppContextAsync(client)
+      console.log(location)
       const result = await getSellContactEmail(client, location)
+      console.log(result)
       setData(result)
       setFeedback({status: FeedbackStatus.success})
 
