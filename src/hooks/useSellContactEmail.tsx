@@ -17,6 +17,7 @@ const API_EMAIL_FIELD_PER_LOCATION = {
   [AppLocations.companyCard]: 'contact.email',
   [AppLocations.leadCard]: 'lead.email',
   [AppLocations.dealCard]: 'deal.contact.email',
+  [AppLocations.ticketSidebar]: 'currentUser.email',
 }
 
 const getSellContactEmail = async (

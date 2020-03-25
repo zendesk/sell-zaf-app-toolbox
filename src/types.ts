@@ -12,6 +12,7 @@ export enum AppLocations {
   personCard = 'person_card',
   companyCard = 'company_card',
   modal = 'modal',
+  ticketSidebar = 'ticket_sidebar'
 }
 
 export type AppLocation =
@@ -20,6 +21,7 @@ export type AppLocation =
   | 'person_card'
   | 'company_card'
   | 'modal'
+  | 'ticket_sidebar'
 
 export interface Context {
   // eq. "sell"
