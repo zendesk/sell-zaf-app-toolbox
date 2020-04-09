@@ -1,6 +1,12 @@
 import {Response} from '../types'
 import useClientRequest from './useClientRequest'
 
+/* parameter of type 'oauth' has to be added to manifest.json
+  {
+    "name" : "access_token",
+    "type": "oauth"
+  }
+*/
 export function useClientRequestWithAuth<T extends {}>(
   url: string,
   options: object = {},
@@ -10,10 +16,10 @@ export function useClientRequestWithAuth<T extends {}>(
   const response = useClientRequest<T>(
     url,
     {
-      oauth: true,
+      secure: true,
       dataType: 'json',
       contentType: 'application/json',
-      headers: {authorization: 'Bearer {{oauth.access_token}}'},
+      headers: {authorization: 'Bearer {{setting.access_token}}'},
       ...options,
     },
     dependencies,

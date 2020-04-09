@@ -90,10 +90,10 @@
   useClientRequest(
     'www.example.com',
     {
-      oauth: true,
+      secure: true,
       dataType: 'json',
       contentType: 'application/json',
-      headers: {authorization: 'Bearer {access_token}'},
+      headers: {authorization: 'Bearer {{setting.access_token}}'},
       data: {
         keyExample: 'Value Example',
       },
