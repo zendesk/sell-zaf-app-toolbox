@@ -73,6 +73,7 @@ export interface Response<T> {
 
 export interface Client {
   on: <T>(event: string, callback: (data?: T) => void) => void
+  off: (event: string) => void
   invoke: <T>(name: string, ...options: any[]) => Promise<T>
   get: <T>(name: string | string[]) => Promise<T>
   set: <T>(name: string, value: string) => Promise<T>
