@@ -35,7 +35,7 @@ export interface Context {
 }
 
 export interface AccountContext {
-  domain: string
+  subdomain: string
   currency: string
   timezone: string
   numberFormat: string
