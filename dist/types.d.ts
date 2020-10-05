@@ -21,7 +21,7 @@ export interface Context {
     currentUser: UserContext;
 }
 export interface AccountContext {
-    domain: string;
+    subdomain: string;
     currency: string;
     timezone: string;
     numberFormat: string;

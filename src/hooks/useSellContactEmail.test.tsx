@@ -11,7 +11,7 @@ const appContext: Context = {
   location: 'person_card',
   instanceGuid: '12-323-4232-122fsfwe',
   account: {
-    domain: 'my-sell-subdomain',
+    subdomain: 'my-sell-subdomain',
     currency: 'USD',
     timezone: 'America/New_York',
     numberFormat: 'us',
