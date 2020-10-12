@@ -4,7 +4,7 @@
 
 ### Hooks
 
-- `useClientGet(path)`
+#### `useClientGet(path)`
 
   Gets data asynchronously for a given path. Uses [client.get](https://developer.zendesk.com/apps/docs/core-api/client_api#client.getpaths) under the hood. For a complete list of supported paths, see:
 
@@ -31,7 +31,7 @@
    }
   ```
 
-- `useClientHeight(height)`
+#### `useClientHeight(height)`
 
   Changes an app height. Calls [resize](https://developer.zendesk.com/apps/docs/core-api/core_api#resize) action under the hood.
 
@@ -45,7 +45,7 @@
   useClientHeight(300)
   ```
 
-- `useClientInvoke(name, ...options)`
+#### `useClientInvoke(name, ...options)`
 
   Executes an action identified by the name path parameter.
   Use [client.invoke](https://developer.zendesk.com/apps/docs/core-api/client_api#client.invokename--...args) under the hood.
@@ -71,7 +71,7 @@
    }
   ```
 
-- `useClientRequest(url, options, dependencies, cacheKey)`
+#### `useClientRequest(url, options, dependencies, cacheKey)`
 
   Dispatches network requests via the Zendesk Apps framework.
   Uses [client.request](https://developer.zendesk.com/apps/docs/core-api/client_api#client.requestoptions) under the hood.
@@ -90,13 +90,9 @@
   useClientRequest(
     'www.example.com',
     {
-      secure: true,
+      data: { keyExample: 'Value Example' },
       dataType: 'json',
       contentType: 'application/json',
-      headers: {authorization: 'Bearer {{setting.access_token}}'},
-      data: {
-        keyExample: 'Value Example',
-      },
     },
     [],
   )
@@ -112,9 +108,17 @@
    }
   ```
 
-- `useClientRequestWithAuth(url, options, dependencies, cacheKey)`
+#### `useClientRequestWithAuth(url, options, dependencies, cacheKey)`
 
-  Similar to `useClientRequest` hook, but additionally passes extra parameters which are required with OAuth-style authorization.
+  Uses `useClientRequest` under the hood, but additionally passes extra parameters which are required to make authenticated requests:
+  
+  ```javascript
+  const options = {
+    secure: true,
+    headers: {authorization: 'Bearer {{setting.access_token}}'},
+    ...otherOptions,
+  }
+  ```
 
   Example:
 
@@ -140,7 +144,7 @@
    }
   ```
 
-- `useSellContactEmail()`
+#### `useSellContactEmail()`
 
   Asynchronously gets Sell contact email based on current location.
 
@@ -162,7 +166,7 @@
 
 ### Formatters
 
-- `useFormattedDate(date)`
+#### `useFormattedDate(date)`
 
   Formats a given date respecting **user and account settings**. If the API throws an error, the date will be formatted according to local timezone.
 
@@ -182,7 +186,7 @@
   '10/01/2019'
   ```
 
-- `useFormattedDateTime(date)`
+#### `useFormattedDateTime(date)`
 
   Formats a given date-time respecting **user and account settings**. If the API throws an error, the date-time will be formatted according to local timezone.
 
@@ -202,7 +206,7 @@
   '10/01/2019 04:22 PM'
   ```
 
-- `useLocalDateFormat(date)`
+#### `useLocalDateFormat(date)`
 
   Formats a given date according to a local timezone. No error handling support.
 
@@ -222,11 +226,11 @@
   '10/01/2019'
   ```
 
-- `useLocalDateTimeFormat(date)`
+#### `useLocalDateTimeFormat(date)`
 
   Works the same as `useLocalDateFormat(date)` but returns string with date-time instead of date.
 
-- `useFormattedCurrency(amount, currency)`
+#### `useFormattedCurrency(amount, currency)`
 
   Formats a given amount respecting **user and account settings**. If the API throws an error, only the amount to format will be returned.
 
