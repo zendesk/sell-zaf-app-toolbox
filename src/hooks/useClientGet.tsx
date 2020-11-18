@@ -3,7 +3,10 @@ import {useContext, useEffect, useState} from 'react'
 import {ZAFClientContext} from '../providers/ZAFClientContext'
 import {Feedback, FeedbackStatus, Response} from '../types'
 
-export function useClientGet<T>(path: string): Response<T> {
+export function useClientGet<T>(
+  path: string,
+  dependencies: any[] = [],
+): Response<T> {
   const [data, setData] = useState<T | null>(null)
   const [error, setError] = useState<any | null>(null)
   const [feedback, setFeedback] = useState<Feedback | null>(null)
@@ -29,7 +32,7 @@ export function useClientGet<T>(path: string): Response<T> {
   }
   useEffect(() => {
     getData()
-  }, [])
+  }, [path, ...dependencies])
 
   return {data, error, feedback}
 }

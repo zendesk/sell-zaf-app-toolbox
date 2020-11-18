@@ -1,5 +1,7 @@
 import * as React from 'react'
+import {useCallback, useState} from 'react'
 import {mount} from 'enzyme'
+import {act} from 'react-dom/test-utils'
 
 import {ZAFClientContextProvider} from '../providers/ZAFClientContext'
 import {Client, FeedbackStatus} from '../types'
@@ -94,6 +96,81 @@ describe('useClientGet', () => {
       errors: {'non.existing.path': 'Path does not exist'},
     })
     expect(props.feedback).toEqual({status: FeedbackStatus.error})
+
+    tree.unmount()
+  })
+
+  test('should call client.get twice because of changing dependencies', async () => {
+    const Dummy = (prop: any) => <div />
+    const Wrapper = () => {
+      const [count, setCounter] = useState(0)
+
+      const updateCounter = useCallback(() => {
+        setCounter((c) => c + 1)
+      }, [])
+
+      const {data, error, feedback} = useClientGet('deal.id', [count])
+      return (
+        <Dummy
+          data={data}
+          error={error}
+          feedback={feedback}
+          updateCounter={updateCounter}
+        />
+      )
+    }
+
+    // @ts-ignore
+    const client: Client = {
+      // @ts-ignore
+      get: jest.fn(
+        () =>
+          new Promise<{'deal.id': number; errors: {}}>((res) =>
+            res({'deal.id': 123, errors: {}}),
+          ),
+      ),
+    }
+
+    const tree = mount(
+      <ZAFClientContextProvider value={client}>
+        <Wrapper />
+      </ZAFClientContextProvider>,
+    )
+
+    expect(client.get).toHaveBeenCalled()
+
+    let dummy = tree.find(Dummy)
+    let props = dummy.props()
+    expect(props.data).toEqual(null)
+    expect(props.feedback).toEqual({status: FeedbackStatus.loading})
+
+    await flushPromises()
+    tree.update()
+
+    dummy = tree.find(Dummy)
+    props = dummy.props()
+    expect(props.data).toEqual(123)
+    expect(props.feedback).toEqual({status: FeedbackStatus.success})
+
+    act(() => {
+      props.updateCounter()
+    })
+
+    tree.update()
+
+    dummy = tree.find(Dummy)
+    props = dummy.props()
+
+    expect(client.get).toHaveBeenCalled()
+    expect(props.feedback).toEqual({status: FeedbackStatus.loading})
+
+    await flushPromises()
+    tree.update()
+
+    dummy = tree.find(Dummy)
+    props = dummy.props()
+
+    expect(props.feedback).toEqual({status: FeedbackStatus.success})
 
     tree.unmount()
   })
