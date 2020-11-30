@@ -30,7 +30,29 @@ export interface AccountContext {
     decimalSeparator: string;
 }
 export interface UserContext {
+    id: number;
+    name: string;
+    email: string;
+    status: string;
+    invited: boolean | null
+    confirmed: boolean;
+    phone: string | null;
+    role: string;
+    roles: Array<Role>;
+    group: Group | null;
+    reportsTo: number | null;
+    timezone: string | null;
+    createdAt: string;
+    updatedAt: string;
     locale: string;
+}
+export interface Group {
+    id: number;
+    name: string;
+}
+export interface Role {
+    id: number;
+    name: string;
 }
 export declare enum FeedbackStatus {
     success = "success",
