@@ -30,6 +30,7 @@ export interface AccountContext {
     decimalSeparator: string;
 }
 export interface UserContext {
+    id: number;
     locale: string;
 }
 export declare enum FeedbackStatus {
