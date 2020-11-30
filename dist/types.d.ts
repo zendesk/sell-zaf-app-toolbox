@@ -31,7 +31,15 @@ export interface AccountContext {
 }
 export interface UserContext {
     id: number;
+    createdAt: string;
+    email: string;
+    confirmed: boolean;
+    group: Group | null;
+    reportsTo: number | null;
     locale: string;
+}
+export interface Group {
+    id: number;
 }
 export declare enum FeedbackStatus {
     success = "success",
