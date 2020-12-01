@@ -68,12 +68,12 @@ export function ResponseHandler({
 
   const checkResponse = createCheckResponse<any>(responseArray)
 
-  if (checkResponse(isLoading, customIsLoading)) {
-    return loadingView
-  }
-
   if (checkResponse(hasError, customHasError)) {
     return errorView
+  }
+
+  if (checkResponse(isLoading, customIsLoading)) {
+    return loadingView
   }
 
   if (checkResponse(isEmpty, customIsEmpty)) {
