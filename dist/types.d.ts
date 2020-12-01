@@ -34,16 +34,17 @@ export interface UserContext {
     name: string;
     email: string;
     status: string;
-    invited: boolean | null
+    invited: boolean | null;
     confirmed: boolean;
     phone: string | null;
     role: string;
-    roles: Array<Role>;
+    roles: Role[];
     group: Group | null;
     reportsTo: number | null;
     timezone: string | null;
     createdAt: string;
     updatedAt: string;
+    deletedAt: string | null;
     locale: string;
 }
 export interface Group {

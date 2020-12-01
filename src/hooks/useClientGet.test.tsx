@@ -174,4 +174,31 @@ describe('useClientGet', () => {
 
     tree.unmount()
   })
+
+  test('should not call client.get with skip option set to true', async () => {
+    const Dummy = (prop: any) => <div />
+    const Wrapper = () => {
+      const {data, error, feedback} = useClientGet('some.path', [], {
+        skip: true,
+      })
+      return <Dummy data={data} error={error} feedback={feedback} />
+    }
+
+    // @ts-ignore
+    const client: Client = {
+      // @ts-ignore
+      get: jest.fn(),
+    }
+
+    const tree = mount(
+      <ZAFClientContextProvider value={client}>
+        <Wrapper />
+      </ZAFClientContextProvider>,
+    )
+
+    const dummy = tree.find(Dummy)
+    const props = dummy.props()
+    expect(client.get).not.toHaveBeenCalled()
+    expect(props.data).toEqual(null)
+  })
 })

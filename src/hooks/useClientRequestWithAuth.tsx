@@ -1,5 +1,5 @@
 import {Response} from '../types'
-import useClientRequest from './useClientRequest'
+import useClientRequest, {Options} from './useClientRequest'
 
 /* parameter of type 'oauth' has to be added to manifest.json
   {
@@ -9,7 +9,7 @@ import useClientRequest from './useClientRequest'
 */
 export function useClientRequestWithAuth<T extends {}>(
   url: string,
-  options: object = {},
+  options: Options<T> = {skip: false},
   dependencies?: any[],
   cacheKey?: string,
 ): Response<T> {

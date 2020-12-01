@@ -1,6 +1,6 @@
 {
   "name": "@zendesk/sell-zaf-app-toolbox",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "A package for developers that streamlines the building of Zendesk App Framework apps for Sell",
   "main": "./dist/main.js",
   "types": "./dist/index.d.ts",

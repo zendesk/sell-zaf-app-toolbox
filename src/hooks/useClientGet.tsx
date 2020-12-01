@@ -3,9 +3,14 @@ import {useContext, useEffect, useState} from 'react'
 import {ZAFClientContext} from '../providers/ZAFClientContext'
 import {Feedback, FeedbackStatus, Response} from '../types'
 
+interface Options {
+  skip?: boolean
+}
+
 export function useClientGet<T>(
   path: string,
   dependencies: any[] = [],
+  options: Options = {skip: false},
 ): Response<T> {
   const [data, setData] = useState<T | null>(null)
   const [error, setError] = useState<any | null>(null)
@@ -31,7 +36,9 @@ export function useClientGet<T>(
     }
   }
   useEffect(() => {
-    getData()
+    if (!options.skip) {
+      getData()
+    }
   }, [path, ...dependencies])
 
   return {data, error, feedback}

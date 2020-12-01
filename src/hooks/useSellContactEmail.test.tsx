@@ -19,7 +19,24 @@ const appContext: Context = {
     dateFormat: 'MM/DD/YYYY',
     decimalSeparator: '.',
   },
-  currentUser: {locale: 'en-US'},
+  currentUser: {
+    id: 12345,
+    name: 'John Doe',
+    email: 'jdoe@z3nmail.com',
+    status: 'active',
+    invited: null,
+    confirmed: true,
+    role: 'admin',
+    roles: [],
+    createdAt: '2020-11-13T12:35:28Z',
+    updatedAt: '2020-11-25T08:14:08Z',
+    deletedAt: null,
+    phone: null,
+    timezone: 'America/New_York',
+    reportsTo: null,
+    group: null,
+    locale: 'en-US',
+  },
 }
 
 describe('useSellContactEmail', () => {
