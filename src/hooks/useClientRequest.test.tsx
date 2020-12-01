@@ -8,24 +8,20 @@ import {Client, FeedbackStatus} from '../types'
 
 const Dummy = (prop: any) => <div />
 
-const Wrapper = () => {
-  const options = {}
-  const cacheKey = 'myKey'
+const Wrapper = ({
+  options = {},
+  deps = [],
+  cacheKey,
+}: {
+  options?: any
+  deps?: any[]
+  cacheKey?: string
+}) => {
   const {data, error, feedback} = useClientRequest(
     '/fake-url',
     options,
-    [],
+    deps,
     cacheKey,
-  )
-  return <Dummy data={data} error={error} feedback={feedback} />
-}
-
-const WrapperWithDeps = (props: any) => {
-  const options = {}
-  const {data, error, feedback} = useClientRequest(
-    '/fake-url',
-    options,
-    props.deps,
   )
   return <Dummy data={data} error={error} feedback={feedback} />
 }
@@ -69,8 +65,8 @@ describe('useClientRequest', () => {
     const tree = mount(
       <ZAFClientContextProvider value={client}>
         <div>
-          <Wrapper />
-          <Wrapper />
+          <Wrapper cacheKey="myKey" />
+          <Wrapper cacheKey="myKey" />
         </div>
       </ZAFClientContextProvider>,
     )
@@ -113,7 +109,7 @@ describe('useClientRequest', () => {
 
     const tree = mount(
       <ZAFClientContextProvider value={client}>
-        <WrapperWithDeps deps={[undefined]} />
+        <Wrapper deps={[undefined]} />
       </ZAFClientContextProvider>,
     )
 
@@ -137,7 +133,7 @@ describe('useClientRequest', () => {
 
     const tree = mount(
       <ZAFClientContextProvider value={client}>
-        <WrapperWithDeps deps={[undefined]} />
+        <Wrapper deps={[undefined]} />
       </ZAFClientContextProvider>,
     )
 
@@ -146,7 +142,7 @@ describe('useClientRequest', () => {
 
     expect(client.request).not.toHaveBeenCalled()
 
-    tree.setProps({children: <WrapperWithDeps deps={[true]} />})
+    tree.setProps({children: <Wrapper deps={[true]} />})
 
     await flushPromises()
     tree.update()
@@ -156,6 +152,31 @@ describe('useClientRequest', () => {
 
     expect(props.data).toEqual({id: 123})
     expect(client.request).toHaveBeenCalledWith({url: '/fake-url'})
+
+    tree.unmount()
+  })
+
+  test('shouldn\t call client.request when option skip is set to true', async () => {
+    // @ts-ignore
+    const client: Client = {
+      // @ts-ignore
+      request: jest.fn(),
+    }
+    const options = {skip: true}
+
+    const tree = mount(
+      <ZAFClientContextProvider value={client}>
+        <Wrapper options={options} />
+      </ZAFClientContextProvider>,
+    )
+
+    await flushPromises()
+    tree.update()
+
+    const dummy = tree.find(Dummy).first()
+    const props = dummy.props()
+    expect(client.request).not.toHaveBeenCalled()
+    expect(props.data).toEqual(null)
 
     tree.unmount()
   })

@@ -3,17 +3,18 @@ import {useContext, useEffect, useState} from 'react'
 import {Feedback, FeedbackStatus, Response} from '../types'
 import {ZAFClientContext} from '../providers/ZAFClientContext'
 
-interface Options<T> {
+export interface Options<T> {
   [key: string]: any
 
   transformResponse?: (response: T, currentData: T | null) => T
+  skip?: boolean
 }
 
 const cache: {[key: string]: any} = {}
 
 export function useClientRequest<T>(
   url: string,
-  options: Options<T>,
+  options: Options<T> = {skip: false},
   dependencies?: any[],
   cacheKey?: string,
 ): Response<T> {
@@ -34,23 +35,20 @@ export function useClientRequest<T>(
       }
 
       let clientRequest: Promise<T>
+      const {transformResponse, skip, ...requestOptions} = options
 
       if (cacheKey && cache[cacheKey]) {
         clientRequest = cache[cacheKey]
       } else {
         clientRequest = client.request<any, T>({
           url,
-          ...options,
+          ...requestOptions,
         })
         if (cacheKey) cache[cacheKey] = clientRequest
       }
 
       const response = await clientRequest
-      setData(
-        options.transformResponse
-          ? options.transformResponse(response, data)
-          : response,
-      )
+      setData(transformResponse ? transformResponse(response, data) : response)
       setFeedback({status: FeedbackStatus.success})
     } catch (e) {
       if (cacheKey) delete cache[cacheKey]
@@ -65,7 +63,9 @@ export function useClientRequest<T>(
   const deps = dependencies ? dependencies : []
 
   useEffect(() => {
-    performRequest()
+    if (!options.skip) {
+      performRequest()
+    }
   }, [url, cacheKey, ...deps])
 
   return {
