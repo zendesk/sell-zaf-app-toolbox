@@ -129,6 +129,37 @@ describe('ResponseHandler', () => {
     expect(component.find(Error).exists()).toBe(true)
   })
 
+  test('should render error screen when one of responses has error status but the other response has no feedback', () => {
+    const responses = [
+      {
+        data: null,
+        error: {status: 400},
+        feedback: {
+          status: FeedbackStatus.error,
+        },
+      },
+      {
+        data: null,
+        error: null,
+        feedback: null,
+      },
+    ]
+
+    const component = mount(
+      <ResponseHandler
+        responses={responses}
+        errorView={<Error />}
+        loadingView={<Loading />}
+      >
+        {() => <Content />}
+      </ResponseHandler>,
+    )
+
+    expect(component.find(Content).exists()).toBe(false)
+    expect(component.find(Loading).exists()).toBe(false)
+    expect(component.find(Error).exists()).toBe(true)
+  })
+
   test('should render empty state when response is empty', () => {
     const response = {...mockResponse, data: null}
     const component = mount(
