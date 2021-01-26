@@ -24,9 +24,12 @@ export const isEmpty: StatusCheck = (response) => {
 }
 
 export function createCheckResponse<T>(responseArray: Array<Response<T>>) {
-  return (check: StatusCheck, customCheck?: StatusCheck): boolean => {
+  return (
+    check: StatusCheck,
+    customCheck?: StatusCheck,
+  ): Response<T> | undefined => {
     const checkFunc = customCheck ? customCheck : check
-    return responseArray.some(checkFunc)
+    return responseArray.find(checkFunc)
   }
 }
 
@@ -41,7 +44,7 @@ interface Props<T> {
 
   loadingView?: JSX.Element | null
   emptyView?: JSX.Element | null
-  errorView?: JSX.Element | null
+  errorView?: ((error: object) => JSX.Element) | JSX.Element | null
 
   isEmpty?: StatusCheck
   isLoading?: StatusCheck
@@ -68,8 +71,11 @@ export function ResponseHandler({
 
   const checkResponse = createCheckResponse<any>(responseArray)
 
-  if (checkResponse(hasError, customHasError)) {
-    return errorView
+  const responseWithError = checkResponse(hasError, customHasError)
+  if (responseWithError) {
+    return typeof errorView === 'function'
+      ? errorView(responseWithError.error!)
+      : errorView
   }
 
   if (checkResponse(isLoading, customIsLoading)) {

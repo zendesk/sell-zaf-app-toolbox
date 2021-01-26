@@ -27,9 +27,24 @@ const setFeedbackStatus = (status: FeedbackStatus): Response<{}> => ({
   feedback: {...mockResponse.feedback, status},
 })
 
+const setError = (status: number): Response<{}> => ({
+  ...setFeedbackStatus(FeedbackStatus.error),
+  data: null,
+  error: {status},
+})
+
+interface ErrorResponse {
+  status: number
+}
+
 describe('ResponseHandler', () => {
   const Loading = () => <div>Loading Test</div>
-  const Error = () => <div>Error Test</div>
+  const Error = ({error}: {error?: ErrorResponse}) => {
+    if (error && error.status === 401) {
+      return <div>Error 401</div>
+    }
+    return <div>Error Test</div>
+  }
   const Content = ({children, ...rest}: {children?: any; id?: string}) => (
     <div {...rest}>{children ? children : 'Content'}</div>
   )
@@ -126,7 +141,25 @@ describe('ResponseHandler', () => {
 
     expect(component.find(Content).exists()).toBe(false)
     expect(component.find(Loading).exists()).toBe(false)
-    expect(component.find(Error).exists()).toBe(true)
+    expect(component.find(Error).text()).toBe('Error Test')
+  })
+
+  test('should render error screen for specific error status when one of responses has error status', () => {
+    const responses = [setFeedbackStatus(FeedbackStatus.success), setError(401)]
+
+    const component = mount(
+      <ResponseHandler
+        responses={responses}
+        errorView={(error: ErrorResponse) => <Error error={error} />}
+        loadingView={<Loading />}
+      >
+        {() => <Content />}
+      </ResponseHandler>,
+    )
+
+    expect(component.find(Content).exists()).toBe(false)
+    expect(component.find(Loading).exists()).toBe(false)
+    expect(component.find(Error).text()).toBe('Error 401')
   })
 
   test('should render error screen when one of responses has error status but the other response has no feedback', () => {
@@ -444,11 +477,15 @@ describe('checkResponse', () => {
 
   test('check function should be called for each response until condition is met', () => {
     const mockCheck = jest.fn(() => false)
-    expect(checkResponse(mockCheck)).toBe(false)
+    expect(checkResponse(mockCheck)).toBe(undefined)
     expect(mockCheck.mock.calls.length).toBe(5)
 
     const anotherMockCheck = jest.fn(({data}) => data === 2)
-    expect(checkResponse(anotherMockCheck)).toBe(true)
+    expect(checkResponse(anotherMockCheck)).toEqual({
+      data: 2,
+      error: null,
+      feedback: null,
+    })
     expect(anotherMockCheck.mock.calls.length).toBe(3)
   })
 
@@ -456,19 +493,27 @@ describe('checkResponse', () => {
     const mockCheck = jest.fn(() => false)
     const mockCustomCheck = jest.fn(() => false)
 
-    expect(checkResponse(mockCheck, mockCustomCheck)).toBe(false)
+    expect(checkResponse(mockCheck, mockCustomCheck)).toBe(undefined)
     expect(mockCheck.mock.calls.length).toBe(0)
     expect(mockCustomCheck.mock.calls.length).toBe(5)
 
     const anotherCheck = jest.fn(() => false)
     const anotherCustomCheck = jest.fn(({data}) => data === 2)
-    expect(checkResponse(anotherCheck, anotherCustomCheck)).toBe(true)
+    expect(checkResponse(anotherCheck, anotherCustomCheck)).toEqual({
+      data: 2,
+      error: null,
+      feedback: null,
+    })
     expect(anotherCheck.mock.calls.length).toBe(0)
     expect(anotherCustomCheck.mock.calls.length).toBe(3)
 
     const check = jest.fn(() => true)
     const customCheck = jest.fn(({data}) => data === 2)
-    expect(checkResponse(check, customCheck)).toBe(true)
+    expect(checkResponse(check, customCheck)).toEqual({
+      data: 2,
+      error: null,
+      feedback: null,
+    })
     expect(check.mock.calls.length).toBe(0)
     expect(customCheck.mock.calls.length).toBe(3)
   })
