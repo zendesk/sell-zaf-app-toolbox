@@ -24,6 +24,7 @@
     "curly": false,
     "object-literal-sort-keys": false,
     "member-access": false,
-    "origin-ordered-imports": [true, "one-blank-line"]
+    "origin-ordered-imports": [true, "one-blank-line"],
+    "jsx-no-lambda": false
   }
 }
