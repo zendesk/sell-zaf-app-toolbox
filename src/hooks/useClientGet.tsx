@@ -2,6 +2,7 @@ import {useContext, useEffect, useState} from 'react'
 
 import {ZAFClientContext} from '../providers/ZAFClientContext'
 import {Feedback, FeedbackStatus, Response} from '../types'
+import useCounter from './useCounter'
 
 interface Options {
   skip?: boolean
@@ -12,10 +13,11 @@ export function useClientGet<T>(
   dependencies: any[] = [],
   options: Options = {skip: false},
 ): Response<T> {
+  const client = useContext(ZAFClientContext)
   const [data, setData] = useState<T | null>(null)
   const [error, setError] = useState<any | null>(null)
   const [feedback, setFeedback] = useState<Feedback | null>(null)
-  const client = useContext(ZAFClientContext)
+  const {counter, increment: refetch} = useCounter()
 
   const getData = async () => {
     setFeedback({status: FeedbackStatus.loading})
@@ -39,9 +41,9 @@ export function useClientGet<T>(
     if (!options.skip) {
       getData()
     }
-  }, [path, ...dependencies])
+  }, [path, counter, ...dependencies])
 
-  return {data, error, feedback}
+  return {data, error, feedback, refetch}
 }
 
 export default useClientGet

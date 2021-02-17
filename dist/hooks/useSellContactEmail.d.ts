@@ -1,3 +1,3 @@
-import { ClientResponse } from '../types';
-export declare function useSellContactEmail(): ClientResponse;
+import { Response } from '../types';
+export declare function useSellContactEmail(): Response<string>;
 export default useSellContactEmail;
