@@ -5,7 +5,7 @@ import {
   AppLocation,
   Feedback,
   FeedbackStatus,
-  ClientResponse,
+  Response,
   AppLocations,
   ChangedProperty,
 } from '../types'
@@ -30,7 +30,7 @@ const getSellContactEmail = async (
   return result[contactEmailField]
 }
 
-export function useSellContactEmail(): ClientResponse {
+export function useSellContactEmail(): Response<string> {
   const client = useContext(ZAFClientContext)
   const [data, setData] = useState<string | null>(null)
   const [error, setError] = useState<any | null>(null)

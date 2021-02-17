@@ -1,9 +1,9 @@
 import useClientInvoke from '../hooks/useClientInvoke'
-import {ClientResponse, ClientInvokeOptions} from '../types'
+import {Response, ClientInvokeOptions} from '../types'
 
 export function useAccountDateFormat(
   date: Date | string | number,
-): ClientResponse {
+): Response<string> {
   return useClientInvoke(
     ClientInvokeOptions.formatDate,
     date,

@@ -1,5 +1,6 @@
 import * as React from 'react'
 import {mount} from 'enzyme'
+import {act} from 'react-dom/test-utils'
 
 import useClientRequest from './useClientRequest'
 import {ZAFClientContextProvider} from '../providers/ZAFClientContext'
@@ -17,13 +18,15 @@ const Wrapper = ({
   deps?: any[]
   cacheKey?: string
 }) => {
-  const {data, error, feedback} = useClientRequest(
+  const {data, error, feedback, refetch} = useClientRequest(
     '/fake-url',
     options,
     deps,
     cacheKey,
   )
-  return <Dummy data={data} error={error} feedback={feedback} />
+  return (
+    <Dummy data={data} error={error} feedback={feedback} refetch={refetch} />
+  )
 }
 
 describe('useClientRequest', () => {
@@ -79,7 +82,9 @@ describe('useClientRequest', () => {
 
     let dummy2 = tree.find(Dummy).last()
     let props2 = dummy2.props()
-    expect(props2).toEqual(props)
+    expect(props2.data).toEqual(null)
+    expect(props2.error).toEqual(null)
+    expect(props2.feedback).toEqual({status: FeedbackStatus.loading})
 
     await flushPromises()
     tree.update()
@@ -92,7 +97,9 @@ describe('useClientRequest', () => {
 
     dummy2 = tree.find(Dummy).last()
     props2 = dummy2.props()
-    expect(props2).toEqual(props)
+    expect(props2.data).toEqual({id: 123})
+    expect(props2.error).toEqual(null)
+    expect(props2.feedback).toEqual({status: FeedbackStatus.success})
 
     expect(client.request).toHaveBeenCalledWith({url: '/fake-url'})
     expect(client.request).toHaveBeenCalledTimes(1)
@@ -177,6 +184,53 @@ describe('useClientRequest', () => {
     const props = dummy.props()
     expect(client.request).not.toHaveBeenCalled()
     expect(props.data).toEqual(null)
+
+    tree.unmount()
+  })
+
+  test('should call client.request twice when refetched', async () => {
+    // @ts-ignore
+    const client: Client = {
+      // @ts-ignore
+      request: jest.fn(() => new Promise((res) => res({id: 123}))),
+    }
+
+    const tree = mount(
+      <ZAFClientContextProvider value={client}>
+        <Wrapper />
+      </ZAFClientContextProvider>,
+    )
+
+    await flushPromises()
+    tree.update()
+
+    expect(client.request).toHaveBeenCalled()
+
+    let dummy = tree.find(Dummy).first()
+    let props = dummy.props()
+
+    expect(props.data).toEqual({id: 123})
+
+    act(() => {
+      props.refetch()
+    })
+
+    tree.update()
+
+    dummy = tree.find(Dummy)
+    props = dummy.props()
+
+    expect(client.request).toHaveBeenNthCalledWith(2, {url: '/fake-url'})
+    expect(props.feedback).toEqual({status: FeedbackStatus.loading})
+
+    await flushPromises()
+    tree.update()
+
+    dummy = tree.find(Dummy)
+    props = dummy.props()
+
+    expect(props.data).toEqual({id: 123})
+    expect(props.feedback).toEqual({status: FeedbackStatus.success})
 
     tree.unmount()
   })

@@ -64,15 +64,11 @@ export interface Feedback {
     status: FeedbackStatus;
     error?: any | void;
 }
-export interface ClientResponse {
-    data: string | null;
-    error: object | null;
-    feedback: Feedback | null;
-}
 export interface Response<T> {
     data: T | null;
     error: object | null;
     feedback: Feedback | null;
+    refetch?: () => void;
 }
 export interface Client {
     on: <T>(event: string, callback: (data?: T) => void) => void;

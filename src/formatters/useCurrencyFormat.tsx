@@ -1,10 +1,10 @@
 import useClientInvoke from '../hooks/useClientInvoke'
-import {ClientResponse, ClientInvokeOptions} from '../types'
+import {Response, ClientInvokeOptions} from '../types'
 
 export function useCurrencyFormat(
   amount: number | string,
   currency?: string,
-): ClientResponse {
+): Response<string> {
   return useClientInvoke(ClientInvokeOptions.formatCurrency, amount, currency)
 }
 
