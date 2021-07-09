@@ -78,7 +78,7 @@ export interface Client {
     request: <Input, Output>(data: Input) => Promise<Output>;
     metadata: <T>() => Promise<Metadata<T>>;
     context: () => Promise<Context>;
-    trigger: (event: string) => void;
+    trigger: (event: string, data?: any) => void;
     instance: (Guid: string) => Client;
 }
 export declare enum ClientInvokeOptions {
