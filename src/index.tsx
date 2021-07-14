@@ -29,4 +29,5 @@ export {
 export {flushPromises} from './test/flushPromises'
 export {mergeFeedbacks} from './helpers/mergeFeedbacks'
 export {getAppContextAsync} from './helpers/getAppContextAsync'
+export {hasError} from './components/ResponseHandler'
 export * from './types'
