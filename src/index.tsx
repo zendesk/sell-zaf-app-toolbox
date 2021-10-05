@@ -1,4 +1,5 @@
 // components
+
 export {ResponseHandler} from './components/ResponseHandler'
 
 // client hooks
@@ -24,6 +25,7 @@ export {
   ZAFClientContextProvider,
   ZAFClientContext,
 } from './providers/ZAFClientContext'
+export {useCurrentUser, UserProvider} from './providers/UserProvider'
 
 // helpers
 export {flushPromises} from './test/flushPromises'
