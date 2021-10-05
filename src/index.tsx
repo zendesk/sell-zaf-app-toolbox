@@ -26,6 +26,7 @@ export {
   ZAFClientContext,
 } from './providers/ZAFClientContext'
 export {useCurrentUser, UserProvider} from './providers/UserProvider'
+export {useTicketInfo, TicketProvider} from './providers/TickerProvider'
 
 // helpers
 export {flushPromises} from './test/flushPromises'
