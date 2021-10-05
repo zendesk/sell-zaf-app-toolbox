@@ -13,6 +13,7 @@ export { useLocalDateTimeFormat } from './formatters/useLocalDateTimeFormat';
 export { useAccountDateTimeFormat } from './formatters/useAccountDateTimeFormat';
 export { useCurrencyFormat } from './formatters/useCurrencyFormat';
 export { ZAFClientContextProvider, ZAFClientContext, } from './providers/ZAFClientContext';
+export { useCurrentUser, UserProvider } from './providers/UserProvider';
 export { flushPromises } from './test/flushPromises';
 export { mergeFeedbacks } from './helpers/mergeFeedbacks';
 export { getAppContextAsync } from './helpers/getAppContextAsync';
