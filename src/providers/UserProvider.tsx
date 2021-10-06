@@ -1,27 +1,21 @@
 import React, {createContext, useContext} from 'react'
 
 import useClientGet from '../hooks/useClientGet'
+import {UserContext} from '../types'
 
-interface UserContextData {
-  id: number
-  name: string
-  email: string
-  role: string
-}
-
-const UserContext = createContext<UserContextData>({} as UserContextData)
+const UserContext = createContext<UserContext>({} as UserContext)
 
 const UserProvider: React.FC = ({children}) => {
-  let {data} = useClientGet<UserContextData>('currentUser')
+  let {data} = useClientGet<UserContext>('currentUser')
 
   if (!data) {
-    data = {} as UserContextData
+    data = {} as UserContext
   }
 
   return <UserContext.Provider value={data}>{children}</UserContext.Provider>
 }
 
-const useCurrentUser = (): UserContextData => {
+const useCurrentUser = (): UserContext => {
   return useContext(UserContext)
 }
 

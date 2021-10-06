@@ -1,13 +1,7 @@
 import React, {createContext, useContext} from 'react'
 
 import useClientGet from '../hooks/useClientGet'
-
-interface TicketContextData {
-  id: number
-  subject: string
-  description: string
-  type: string
-}
+import {TicketContextData} from '../types'
 
 const TicketContext = createContext<TicketContextData>({} as TicketContextData)
 
