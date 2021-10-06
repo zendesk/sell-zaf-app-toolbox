@@ -73,7 +73,7 @@ export interface Role {
   name: string
 }
 
-export interface TicketContextData {
+export interface TicketContext {
   id: number
   subject: string
   description: string
