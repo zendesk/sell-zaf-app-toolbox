@@ -12,7 +12,7 @@ export { useAccountDateFormat } from './formatters/useAccountDateFormat';
 export { useLocalDateTimeFormat } from './formatters/useLocalDateTimeFormat';
 export { useAccountDateTimeFormat } from './formatters/useAccountDateTimeFormat';
 export { useCurrencyFormat } from './formatters/useCurrencyFormat';
-export { ZAFClientContextProvider, ZAFClientContext, } from './providers/ZAFClientContext';
+export { ZAFClientContextProvider, ZAFClientContext, useZAFClient, } from './providers/ZAFClientContext';
 export { useCurrentUser, UserProvider } from './providers/UserProvider';
 export { useTicketInfo, TicketProvider } from './providers/TicketProvider';
 export { flushPromises } from './test/flushPromises';

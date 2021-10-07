@@ -55,6 +55,12 @@ export interface Role {
     id: number;
     name: string;
 }
+export interface TicketContext {
+    id: number;
+    subject: string;
+    description: string;
+    type: string;
+}
 export declare enum FeedbackStatus {
     success = "success",
     error = "error",

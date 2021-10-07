@@ -1,10 +1,6 @@
 import React from 'react';
-interface TicketContextData {
-    id: number;
-    subject: string;
-    description: string;
-    type: string;
-}
+import { TicketContext } from '../types';
+declare const TicketContext: React.Context<TicketContext>;
 declare const TicketProvider: React.FC;
-declare const useTicketInfo: () => TicketContextData;
+declare const useTicketInfo: () => TicketContext;
 export { TicketProvider, useTicketInfo };
