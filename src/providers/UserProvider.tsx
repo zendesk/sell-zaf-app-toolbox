@@ -18,6 +18,8 @@ const UserProvider: React.FC = ({children}) => {
 }
 
 const useCurrentUser = (): UserContext => {
+  console.log('useCurrentUser', UserContext);
+
   return useContext(UserContext)
 }
 
