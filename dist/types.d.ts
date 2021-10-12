@@ -76,6 +76,12 @@ export interface Response<T> {
     feedback: Feedback | null;
     refetch?: () => void;
 }
+export interface CallbackRequestResponse<T> {
+    performRequest: () => Promise<void>;
+    data: T | null;
+    error: object | null;
+    feedback: Feedback | null;
+}
 export interface Client {
     on: <T>(event: string, callback: (data?: T) => void) => void;
     invoke: <T>(name: string, ...options: any[]) => Promise<T>;

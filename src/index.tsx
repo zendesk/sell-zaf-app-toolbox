@@ -6,6 +6,7 @@ export {ResponseHandler} from './components/ResponseHandler'
 export {useClientHeight} from './hooks/useClientHeight'
 export {useClientGet} from './hooks/useClientGet'
 export {useClientRequest} from './hooks/useClientRequest'
+export {useCallbackClientRequest} from './hooks/useCallbackClientRequest'
 export {useClientRequestWithAuth} from './hooks/useClientRequestWithAuth'
 
 export {useSellContactEmail} from './hooks/useSellContactEmail'
