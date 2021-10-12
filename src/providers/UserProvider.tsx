@@ -6,11 +6,12 @@ import {UserContext} from '../types'
 const UserContext = createContext<UserContext>({} as UserContext)
 
 const UserProvider: React.FC = ({children}) => {
-  let {data} = useClientGet<UserContext>('currentUser')
+  let {data, refetch} = useClientGet<UserContext>('currentUser')
 
   console.log('userProvider', data);
 
   if (!data) {
+    if (refetch) refetch()
     data = {} as UserContext
   }
 
