@@ -19,8 +19,6 @@ export function useClientGet<T>(
   const [feedback, setFeedback] = useState<Feedback | null>(null)
   const {counter, increment: refetch} = useCounter()
 
-  console.log('useClientGet')
-
   const getData = async () => {
     setFeedback({status: FeedbackStatus.loading})
     try {
