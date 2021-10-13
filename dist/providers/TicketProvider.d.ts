@@ -1,6 +1,5 @@
 import React from 'react';
-import { TicketContext } from '../types';
-declare const TicketContext: React.Context<TicketContext>;
+import { Ticket } from '../types';
 declare const TicketProvider: React.FC;
-declare const useTicketInfo: () => TicketContext;
+declare const useTicketInfo: () => Ticket;
 export { TicketProvider, useTicketInfo };

@@ -17,10 +17,10 @@ export interface Context {
     product: string;
     location: AppLocation;
     instanceGuid: string;
-    account: AccountContext;
-    currentUser: UserContext;
+    account: Account;
+    currentUser: User;
 }
-export interface AccountContext {
+export interface Account {
     domain: string;
     currency: string;
     timezone: string;
@@ -29,7 +29,7 @@ export interface AccountContext {
     dateFormat: string;
     decimalSeparator: string;
 }
-export interface UserContext {
+export interface User {
     id: number;
     name: string;
     email: string;
@@ -55,7 +55,7 @@ export interface Role {
     id: number;
     name: string;
 }
-export interface TicketContext {
+export interface Ticket {
     id: number;
     subject: string;
     description: string;
