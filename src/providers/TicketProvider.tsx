@@ -1,15 +1,15 @@
 import React, {createContext, useContext} from 'react'
 
 import useClientGet from '../hooks/useClientGet'
-import {TicketContext} from '../types'
+import {Ticket} from '../types'
 
-const TicketContext = createContext<TicketContext>({} as TicketContext)
+const TicketContext = createContext<Ticket>({} as Ticket)
 
 const TicketProvider: React.FC = ({children}) => {
-  let {data} = useClientGet<TicketContext>('ticket')
+  let {data} = useClientGet<Ticket>('ticket')
 
   if (!data) {
-    data = {} as TicketContext
+    data = {} as Ticket
   }
 
   return (
@@ -17,7 +17,7 @@ const TicketProvider: React.FC = ({children}) => {
   )
 }
 
-const useTicketInfo = (): TicketContext => {
+const useTicketInfo = (): Ticket => {
   return useContext(TicketContext)
 }
 
