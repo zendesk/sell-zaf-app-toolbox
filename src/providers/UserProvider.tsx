@@ -11,7 +11,6 @@ const UserProvider: React.FC = ({children}) => {
   console.log('userProvider', data);
 
   if (!data) {
-    if (refetch) refetch()
     data = {} as UserContext
   }
 
