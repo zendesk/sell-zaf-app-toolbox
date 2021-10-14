@@ -97,6 +97,13 @@ export interface Response<T> {
   refetch?: () => void
 }
 
+export interface ClientMetadataResponse<T> {
+  data: Metadata<T> | null
+  error: object | null
+  feedback: Feedback | null
+  refetch?: () => void
+}
+
 export interface CallbackRequestResponse<T> {
   performRequest: () => Promise<void>
   data: T | null

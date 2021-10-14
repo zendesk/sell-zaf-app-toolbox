@@ -1,10 +1,13 @@
 // components
 
 export {ResponseHandler} from './components/ResponseHandler'
+export {DynamicHeightContainer} from './components/DynamicHeightContainer'
 
 // client hooks
 export {useClientHeight} from './hooks/useClientHeight'
+export {useDynamicAppHeight} from './hooks/useDynamicAppHeight'
 export {useClientGet} from './hooks/useClientGet'
+export {useClientMetadata} from './hooks/useClientMetadata'
 export {useClientRequest} from './hooks/useClientRequest'
 export {useCallbackClientRequest} from './hooks/useCallbackClientRequest'
 export {useClientRequestWithAuth} from './hooks/useClientRequestWithAuth'

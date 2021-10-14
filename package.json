@@ -23,7 +23,8 @@
   },
   "homepage": "https://github.com/zendesk/sell-zaf-app-toolbox#readme",
   "dependencies": {
-    "memoize-one": "^5.0.5"
+    "memoize-one": "^5.0.5",
+    "react-use": "^17.3.1"
   },
   "peerDependencies": {
     "react": "^16.8.6",

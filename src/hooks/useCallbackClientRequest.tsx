@@ -39,10 +39,14 @@ export function useCallbackClientRequest<T>(
       if (cacheKey && cache[cacheKey]) {
         clientRequest = cache[cacheKey]
       } else {
-        clientRequest = client.request<any, T>({
+        const clientOptions = {
           url,
           ...requestOptions,
-        })
+          headers: {Authorization: 'Bearer {{setting.access_token}}'},
+          secure: true,
+        }
+
+        clientRequest = client.request<any, T>(clientOptions)
         if (cacheKey) cache[cacheKey] = clientRequest
       }
 
