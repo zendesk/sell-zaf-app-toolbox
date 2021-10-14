@@ -1,6 +1,6 @@
 import React from 'react';
-import { UserContext } from '../types';
-declare const UserContext: React.Context<UserContext>;
+import { User } from '../types';
+declare const UserContext: React.Context<User>;
 declare const UserProvider: React.FC;
-declare const useCurrentUser: () => UserContext;
-export { UserProvider, useCurrentUser };
+declare const useCurrentUser: () => User;
+export { UserContext, UserProvider, useCurrentUser };

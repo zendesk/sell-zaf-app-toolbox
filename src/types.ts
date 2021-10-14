@@ -29,12 +29,12 @@ export interface Context {
   // uniq instance id
   instanceGuid: string
   // account info
-  account: AccountContext
+  account: Account
   // user info
-  currentUser: UserContext
+  currentUser: User
 }
 
-export interface AccountContext {
+export interface Account {
   domain: string
   currency: string
   timezone: string
@@ -44,7 +44,7 @@ export interface AccountContext {
   decimalSeparator: string
 }
 
-export interface UserContext {
+export interface User {
   id: number
   name: string
   email: string
@@ -73,7 +73,7 @@ export interface Role {
   name: string
 }
 
-export interface TicketContext {
+export interface Ticket {
   id: number
   subject: string
   description: string
