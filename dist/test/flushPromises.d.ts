@@ -1,2 +1,2 @@
-export declare const flushPromises: () => Promise<unknown>;
+export declare const flushPromises: () => Promise<{}>;
 export default flushPromises;

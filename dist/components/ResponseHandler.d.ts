@@ -1,3 +1,4 @@
+/// <reference types="react" />
 import { Response } from '../types';
 declare type StatusCheck = (response: Response<any>) => boolean;
 export declare const isLoading: StatusCheck;
