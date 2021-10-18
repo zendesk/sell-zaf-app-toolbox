@@ -6,7 +6,7 @@ export const DynamicHeightContainer: React.FC = ({children}) => {
   const appHeightRef = useDynamicAppHeight()
 
   return (
-    <div className="main" ref={appHeightRef}>
+    <div className="dynamicContainer" ref={appHeightRef}>
       {children}
     </div>
   )
