@@ -17,10 +17,10 @@ export interface Context {
     product: string;
     location: AppLocation;
     instanceGuid: string;
-    account: AccountContext;
-    currentUser: UserContext;
+    account: Account;
+    currentUser: User;
 }
-export interface AccountContext {
+export interface Account {
     domain: string;
     currency: string;
     timezone: string;
@@ -29,7 +29,7 @@ export interface AccountContext {
     dateFormat: string;
     decimalSeparator: string;
 }
-export interface UserContext {
+export interface User {
     id: number;
     name: string;
     email: string;
@@ -55,6 +55,12 @@ export interface Role {
     id: number;
     name: string;
 }
+export interface Ticket {
+    id: number;
+    subject: string;
+    description: string;
+    type: string;
+}
 export declare enum FeedbackStatus {
     success = "success",
     error = "error",
@@ -69,6 +75,18 @@ export interface Response<T> {
     error: object | null;
     feedback: Feedback | null;
     refetch?: () => void;
+}
+export interface ClientMetadataResponse<T> {
+    data: Metadata<T> | null;
+    error: object | null;
+    feedback: Feedback | null;
+    refetch?: () => void;
+}
+export interface CallbackRequestResponse<T> {
+    performRequest: () => Promise<void>;
+    data: T | null;
+    error: object | null;
+    feedback: Feedback | null;
 }
 export interface Client {
     on: <T>(event: string, callback: (data?: T) => void) => void;

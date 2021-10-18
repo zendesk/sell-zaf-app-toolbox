@@ -1,10 +1,14 @@
 // components
 export {ResponseHandler} from './components/ResponseHandler'
+export {DynamicHeightContainer} from './components/DynamicHeightContainer'
 
 // client hooks
 export {useClientHeight} from './hooks/useClientHeight'
+export {useDynamicAppHeight} from './hooks/useDynamicAppHeight'
 export {useClientGet} from './hooks/useClientGet'
+export {useClientMetadata} from './hooks/useClientMetadata'
 export {useClientRequest} from './hooks/useClientRequest'
+export {useCallbackClientRequest} from './hooks/useCallbackClientRequest'
 export {useClientRequestWithAuth} from './hooks/useClientRequestWithAuth'
 
 export {useSellContactEmail} from './hooks/useSellContactEmail'
@@ -23,7 +27,10 @@ export {useCurrencyFormat} from './formatters/useCurrencyFormat'
 export {
   ZAFClientContextProvider,
   ZAFClientContext,
+  useZAFClient,
 } from './providers/ZAFClientContext'
+export {useCurrentUser, UserProvider} from './providers/UserProvider'
+export {useTicketInfo, TicketProvider} from './providers/TicketProvider'
 
 // helpers
 export {flushPromises} from './test/flushPromises'

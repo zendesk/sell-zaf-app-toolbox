@@ -29,12 +29,12 @@ export interface Context {
   // uniq instance id
   instanceGuid: string
   // account info
-  account: AccountContext
+  account: Account
   // user info
-  currentUser: UserContext
+  currentUser: User
 }
 
-export interface AccountContext {
+export interface Account {
   domain: string
   currency: string
   timezone: string
@@ -44,7 +44,7 @@ export interface AccountContext {
   decimalSeparator: string
 }
 
-export interface UserContext {
+export interface User {
   id: number
   name: string
   email: string
@@ -73,6 +73,13 @@ export interface Role {
   name: string
 }
 
+export interface Ticket {
+  id: number
+  subject: string
+  description: string
+  type: string
+}
+
 export enum FeedbackStatus {
   success = 'success',
   error = 'error',
@@ -88,6 +95,20 @@ export interface Response<T> {
   error: object | null
   feedback: Feedback | null
   refetch?: () => void
+}
+
+export interface ClientMetadataResponse<T> {
+  data: Metadata<T> | null
+  error: object | null
+  feedback: Feedback | null
+  refetch?: () => void
+}
+
+export interface CallbackRequestResponse<T> {
+  performRequest: () => Promise<void>
+  data: T | null
+  error: object | null
+  feedback: Feedback | null
 }
 
 export interface Client {
