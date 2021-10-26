@@ -20,6 +20,14 @@ export type AppLocation =
   | 'person_card'
   | 'company_card'
   | 'modal'
+  | 'ticket_sidebar'
+  | 'new_ticket_sidebar'
+  | 'ticket_editor'
+  | 'user_sidebar'
+  | 'organization_sidebar'
+  | 'nav_bar'
+  | 'top_bar'
+  | 'background'
 
 export interface Context {
   // eq. "sell"
@@ -80,6 +88,11 @@ export interface Ticket {
   type: string
 }
 
+export interface Organization {
+  id: number
+  name: string
+}
+
 export enum FeedbackStatus {
   success = 'success',
   error = 'error',
@@ -99,6 +112,13 @@ export interface Response<T> {
 
 export interface ClientMetadataResponse<T> {
   data: Metadata<T> | null
+  error: object | null
+  feedback: Feedback | null
+  refetch?: () => void
+}
+
+export interface ClientContextResponse {
+  data: Context | null
   error: object | null
   feedback: Feedback | null
   refetch?: () => void
