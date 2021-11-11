@@ -1,6 +1,6 @@
 {
   "name": "support-zaf-app-toolbox",
-  "version": "3.1.0",
+  "version": "3.1.1",
   "description": "A package for developers that streamlines the building of Zendesk App Framework apps for Support",
   "main": "./dist/main.js",
   "types": "./dist/index.d.ts",
