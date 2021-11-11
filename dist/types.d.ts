@@ -60,6 +60,7 @@ export interface Ticket {
     subject: string;
     description: string;
     type: string;
+    organization: Organization;
 }
 export interface Organization {
     id: number;
