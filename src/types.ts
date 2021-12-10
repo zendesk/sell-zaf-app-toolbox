@@ -91,6 +91,7 @@ export interface Ticket {
 
 export interface Organization {
   id: number
+  externalId: string
   name: string
 }
 
