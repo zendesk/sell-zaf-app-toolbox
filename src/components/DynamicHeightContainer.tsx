@@ -2,8 +2,15 @@ import React from 'react'
 
 import useDynamicAppHeight from '../hooks/useDynamicAppHeight'
 
-export const DynamicHeightContainer: React.FC = ({children}) => {
-  const appHeightRef = useDynamicAppHeight()
+interface DynamicHeightContainerProps {
+  maxHeight?: number
+}
+
+export const DynamicHeightContainer: React.FC<DynamicHeightContainerProps> = ({
+  children,
+  maxHeight,
+}) => {
+  const appHeightRef = useDynamicAppHeight(maxHeight)
 
   return (
     <div className="dynamicContainer" ref={appHeightRef}>

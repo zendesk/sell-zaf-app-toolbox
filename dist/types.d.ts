@@ -21,6 +21,7 @@ export interface Context {
     currentUser: User;
 }
 export interface Account {
+    subdomain?: string;
     domain: string;
     currency: string;
     timezone: string;
@@ -60,7 +61,10 @@ export interface Ticket {
     subject: string;
     description: string;
     type: string;
+    priority: string;
+    created_at: string;
     organization: Organization;
+    tags: string[];
 }
 export interface Organization {
     id: number;

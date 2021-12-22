@@ -1,2 +1,6 @@
 import React from 'react';
-export declare const DynamicHeightContainer: React.FC;
+interface DynamicHeightContainerProps {
+    maxHeight?: number;
+}
+export declare const DynamicHeightContainer: React.FC<DynamicHeightContainerProps>;
+export {};

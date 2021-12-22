@@ -11,10 +11,14 @@ import useClientHeight from './useClientHeight'
  *
  * @returns {function}
  */
-export const useDynamicAppHeight = (): LegacyRef<any> => {
+export const useDynamicAppHeight = (
+  maxHeight: number | undefined,
+): LegacyRef<any> => {
   const [appRef, {height}] = useMeasure()
 
-  useClientHeight(height)
+  const defineHeight = maxHeight && height > maxHeight ? maxHeight : height
+
+  useClientHeight(defineHeight)
 
   return appRef
 }

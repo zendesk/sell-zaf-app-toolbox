@@ -7,5 +7,5 @@ import { LegacyRef } from 'react';
  *
  * @returns {function}
  */
-export declare const useDynamicAppHeight: () => LegacyRef<any>;
+export declare const useDynamicAppHeight: (maxHeight: number | undefined) => LegacyRef<any>;
 export default useDynamicAppHeight;
