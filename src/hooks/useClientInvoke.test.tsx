@@ -1,5 +1,6 @@
 import * as React from 'react'
 import {mount} from 'enzyme'
+import {act} from 'react-dom/test-utils'
 
 import {ZAFClientContextProvider} from '../providers/ZAFClientContext'
 import useClientInvoke from './useClientInvoke'
@@ -46,7 +47,10 @@ describe('useClientInvoke', () => {
     expect(props.error).toEqual(null)
     expect(props.feedback).toEqual({status: FeedbackStatus.loading})
 
-    await flushPromises()
+    await act(async () => {
+      await flushPromises()
+    })
+
     tree.update()
 
     dummy = tree.find(Dummy)
@@ -91,7 +95,10 @@ describe('useClientInvoke', () => {
     expect(props.error).toEqual(null)
     expect(props.feedback).toEqual({status: FeedbackStatus.loading})
 
-    await flushPromises()
+    await act(async () => {
+      await flushPromises()
+    })
+
     tree.update()
 
     dummy = tree.find(Dummy)

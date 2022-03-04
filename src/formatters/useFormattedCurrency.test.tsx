@@ -5,6 +5,7 @@ import {ZAFClientContextProvider} from '../providers/ZAFClientContext'
 import {Client, ClientInvokeOptions} from '../types'
 import flushPromises from '../test/flushPromises'
 import useFormattedCurrency from './useFormattedCurrency'
+import {act} from "react-dom/test-utils";
 
 const amount = 10000
 const currency = 'EUR'
@@ -53,7 +54,10 @@ describe('useFormattedCurrency', () => {
     let divText = findDivTextInTree(tree)
     expect(divText).toEqual('')
 
-    await flushPromises()
+    await act(async () => {
+      await flushPromises()
+    })
+
     tree.update()
 
     divText = findDivTextInTree(tree)
@@ -87,7 +91,10 @@ describe('useFormattedCurrency', () => {
     let divText = findDivTextInTree(tree)
     expect(divText).toEqual('')
 
-    await flushPromises()
+    await act(async () => {
+      await flushPromises()
+    })
+
     tree.update()
 
     divText = findDivTextInTree(tree)
@@ -121,7 +128,10 @@ describe('useFormattedCurrency', () => {
     let divText = findDivTextInTree(tree)
     expect(divText).toEqual('')
 
-    await flushPromises()
+    await act(async () => {
+      await flushPromises()
+    })
+
     tree.update()
 
     divText = findDivTextInTree(tree)

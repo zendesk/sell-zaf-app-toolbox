@@ -42,7 +42,10 @@ describe('useClientGet', () => {
     expect(props.error).toEqual(null)
     expect(props.feedback).toEqual({status: FeedbackStatus.loading})
 
-    await flushPromises()
+    await act(async () => {
+      await flushPromises()
+    })
+
     tree.update()
 
     dummy = tree.find(Dummy)
@@ -53,6 +56,7 @@ describe('useClientGet', () => {
 
     tree.unmount()
   })
+
   test('should call client.get and receive an error', async () => {
     const Wrapper = () => {
       const {data, error, feedback} = useClientGet('non.existing.path')
@@ -86,7 +90,10 @@ describe('useClientGet', () => {
     expect(props.error).toEqual(null)
     expect(props.feedback).toEqual({status: FeedbackStatus.loading})
 
-    await flushPromises()
+    await act(async () => {
+      await flushPromises()
+    })
+
     tree.update()
 
     dummy = tree.find(Dummy)
@@ -143,7 +150,10 @@ describe('useClientGet', () => {
     expect(props.data).toEqual(null)
     expect(props.feedback).toEqual({status: FeedbackStatus.loading})
 
-    await flushPromises()
+    await act(async () => {
+      await flushPromises()
+    })
+
     tree.update()
 
     dummy = tree.find(Dummy)
@@ -163,7 +173,10 @@ describe('useClientGet', () => {
     expect(client.get).toHaveBeenCalled()
     expect(props.feedback).toEqual({status: FeedbackStatus.loading})
 
-    await flushPromises()
+    await act(async () => {
+      await flushPromises()
+    })
+
     tree.update()
 
     dummy = tree.find(Dummy)
@@ -209,7 +222,10 @@ describe('useClientGet', () => {
     expect(props.data).toEqual(null)
     expect(props.feedback).toEqual({status: FeedbackStatus.loading})
 
-    await flushPromises()
+    await act(async () => {
+      await flushPromises()
+    })
+
     tree.update()
 
     dummy = tree.find(Dummy)
@@ -229,7 +245,10 @@ describe('useClientGet', () => {
     expect(client.get).toHaveBeenNthCalledWith(2, 'deal.id')
     expect(props.feedback).toEqual({status: FeedbackStatus.loading})
 
-    await flushPromises()
+    await act(async () => {
+      await flushPromises()
+    })
+
     tree.update()
 
     dummy = tree.find(Dummy)

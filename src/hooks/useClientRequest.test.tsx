@@ -86,7 +86,10 @@ describe('useClientRequest', () => {
     expect(props2.error).toEqual(null)
     expect(props2.feedback).toEqual({status: FeedbackStatus.loading})
 
-    await flushPromises()
+    await act(async () => {
+      await flushPromises()
+    })
+
     tree.update()
 
     dummy = tree.find(Dummy).first()
@@ -151,7 +154,10 @@ describe('useClientRequest', () => {
 
     tree.setProps({children: <Wrapper deps={[true]} />})
 
-    await flushPromises()
+    await act(async () => {
+      await flushPromises()
+    })
+
     tree.update()
 
     const dummy = tree.find(Dummy).first()
@@ -201,7 +207,10 @@ describe('useClientRequest', () => {
       </ZAFClientContextProvider>,
     )
 
-    await flushPromises()
+    await act(async () => {
+      await flushPromises()
+    })
+
     tree.update()
 
     expect(client.request).toHaveBeenCalled()
@@ -223,7 +232,10 @@ describe('useClientRequest', () => {
     expect(client.request).toHaveBeenNthCalledWith(2, {url: '/fake-url'})
     expect(props.feedback).toEqual({status: FeedbackStatus.loading})
 
-    await flushPromises()
+    await act(async () => {
+      await flushPromises()
+    })
+
     tree.update()
 
     dummy = tree.find(Dummy)

@@ -7,14 +7,13 @@ export interface Options<T> {
   [key: string]: any
 
   transformResponse?: (response: T, currentData: T | null) => T
-  skip?: boolean
 }
 
 const cache: {[key: string]: any} = {}
 
 export function useCallbackClientRequest<T>(
   url: string,
-  options: Options<T> = {skip: false},
+  options: Options<T>,
   dependencies?: any[],
   cacheKey?: string,
 ): CallbackRequestResponse<T> {
@@ -34,7 +33,7 @@ export function useCallbackClientRequest<T>(
       }
 
       let clientRequest: Promise<T>
-      const {transformResponse, skip, ...requestOptions} = options
+      const {transformResponse, ...requestOptions} = options
 
       if (cacheKey && cache[cacheKey]) {
         clientRequest = cache[cacheKey]
@@ -51,6 +50,7 @@ export function useCallbackClientRequest<T>(
       }
 
       const response = await clientRequest
+
       setData(transformResponse ? transformResponse(response, data) : response)
       setFeedback({status: FeedbackStatus.success})
     } catch (e) {

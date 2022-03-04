@@ -1,5 +1,6 @@
 import * as React from 'react'
 import {mount} from 'enzyme'
+import {act} from 'react-dom/test-utils'
 
 import {ZAFClientContextProvider} from '../providers/ZAFClientContext'
 import {Client, FeedbackStatus, Context} from '../types'
@@ -70,7 +71,11 @@ describe('useSellContactEmail', () => {
     const tree = initTree(client)
 
     expect(client.context).toHaveBeenCalledWith()
-    await flushPromises()
+
+    await act(async () => {
+      await flushPromises()
+    })
+
     expect(client.get).toHaveBeenCalledWith('contact.email')
 
     let dummy = tree.find(Dummy)
@@ -79,7 +84,10 @@ describe('useSellContactEmail', () => {
     expect(props.error).toEqual(null)
     expect(props.feedback).toEqual({status: FeedbackStatus.loading})
 
-    await flushPromises()
+    await act(async () => {
+      await flushPromises()
+    })
+
     tree.update()
 
     dummy = tree.find(Dummy)
@@ -109,7 +117,11 @@ describe('useSellContactEmail', () => {
     const tree = initTree(client)
 
     expect(client.context).toHaveBeenCalledWith()
-    await flushPromises()
+
+    await act(async () => {
+      await flushPromises()
+    })
+
     expect(client.get).toHaveBeenCalledWith('contact.email')
 
     let dummy = tree.find(Dummy)
@@ -118,7 +130,10 @@ describe('useSellContactEmail', () => {
     expect(props.error).toEqual(null)
     expect(props.feedback).toEqual({status: FeedbackStatus.loading})
 
-    await flushPromises()
+    await act(async () => {
+      await flushPromises()
+    })
+
     tree.update()
 
     dummy = tree.find(Dummy)

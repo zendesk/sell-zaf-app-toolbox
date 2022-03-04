@@ -5,6 +5,7 @@ import useFormattedDate from './useFormattedDate'
 import {ZAFClientContextProvider} from '../providers/ZAFClientContext'
 import {Client, ClientInvokeOptions} from '../types'
 import flushPromises from '../test/flushPromises'
+import {act} from "react-dom/test-utils";
 
 const date = new Date('2019-07-22')
 
@@ -51,7 +52,10 @@ describe('useFormattedDate', () => {
     let divText = findDivTextInTree(tree)
     expect(divText).toEqual('')
 
-    await flushPromises()
+    await act(async () => {
+      await flushPromises()
+    })
+
     tree.update()
 
     divText = findDivTextInTree(tree)
@@ -85,7 +89,10 @@ describe('useFormattedDate', () => {
     let divText = findDivTextInTree(tree)
     expect(divText).toEqual('')
 
-    await flushPromises()
+    await act(async () => {
+      await flushPromises()
+    })
+
     tree.update()
 
     divText = findDivTextInTree(tree)
