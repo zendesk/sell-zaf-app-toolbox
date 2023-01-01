@@ -41,9 +41,9 @@
     "prettier": "^1.18.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "source-map-loader": "^0.2.4",
+    "source-map-loader": "^4.0.1",
     "ts-jest": "^24.0.2",
-    "ts-loader": "6.2.1",
+    "ts-loader": "9.4.2",
     "tslint": "^5.16.0",
     "tslint-config-prettier": "^1.18.0",
     "tslint-origin-ordered-imports-rule": "^1.2.2",
@@ -51,8 +51,8 @@
     "tslint-react": "^4.0.0",
     "tslint-react-hooks": "^2.2.1",
     "typescript": "^3.4.5",
-    "webpack": "^4.38.0",
-    "webpack-cli": "^3.3.6"
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1"
   },
   "jest": {
     "verbose": false,
