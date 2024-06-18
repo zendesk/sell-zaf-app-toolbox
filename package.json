@@ -37,12 +37,12 @@
     "@types/react-dom": "^16.8.2",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.12.1",
-    "jest": "^24.7.1",
+    "jest": "^29.7.0",
     "prettier": "^1.18.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "source-map-loader": "^0.2.4",
-    "ts-jest": "^24.0.2",
+    "ts-jest": "^29.1.5",
     "ts-loader": "6.2.1",
     "tslint": "^5.16.0",
     "tslint-config-prettier": "^1.18.0",
@@ -51,8 +51,8 @@
     "tslint-react": "^4.0.0",
     "tslint-react-hooks": "^2.2.1",
     "typescript": "^3.4.5",
-    "webpack": "^4.38.0",
-    "webpack-cli": "^3.3.6"
+    "webpack": "^5.92.0",
+    "webpack-cli": "^5.1.4"
   },
   "jest": {
     "verbose": false,
