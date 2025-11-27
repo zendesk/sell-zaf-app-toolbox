@@ -7,7 +7,7 @@
   "scripts": {
     "clean": "rm -rf ./dist",
     "lint": "tslint --project tsconfig.json --fix",
-    "build": "npm run clean && NODE_ENV=production webpack -p",
+    "build": "npm run clean && NODE_OPTIONS=--openssl-legacy-provider NODE_ENV=production webpack -p",
     "start": "webpack -w --env development",
     "test": "jest --env=jsdom",
     "test-coverage": "jest --coverage"
