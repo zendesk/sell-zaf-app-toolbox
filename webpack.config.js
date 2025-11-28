@@ -14,7 +14,7 @@ module.exports = (env = []) => {
     externals: ['react', 'react-dom'],
 
     // Enable sourcemaps for debugging webpack's output.
-    devtool: env.includes('development') ? 'source-map' : false,
+    devtool: env.development ? 'source-map' : false,
 
     resolve: {
       extensions: ['.ts', '.tsx', '.js', '.json'],

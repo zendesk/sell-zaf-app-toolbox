@@ -1,2 +1,2 @@
-export declare const useFormattedDateTime: (date: string | number | Date) => string;
+export declare const useFormattedDateTime: (date: Date | string | number) => string;
 export default useFormattedDateTime;

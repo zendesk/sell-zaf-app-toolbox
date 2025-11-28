@@ -12,7 +12,7 @@ import {
 import {ZAFClientContext} from '../providers/ZAFClientContext'
 import {getAppContextAsync} from '../helpers/getAppContextAsync'
 
-const API_EMAIL_FIELD_PER_LOCATION = {
+const API_EMAIL_FIELD_PER_LOCATION: Partial<Record<AppLocation, string>> = {
   [AppLocations.personCard]: 'contact.email',
   [AppLocations.companyCard]: 'contact.email',
   [AppLocations.leadCard]: 'lead.email',
@@ -24,7 +24,10 @@ const getSellContactEmail = async (
   location: AppLocation,
 ): Promise<string> => {
   const contactEmailField = API_EMAIL_FIELD_PER_LOCATION[location]
-  const result = await client.get<{errors: object}>(contactEmailField)
+  if (!contactEmailField) {
+    throw new Error(`Unsupported location: ${location}`)
+  }
+  const result = await client.get<{ errors: object; [key: string]: any }>(contactEmailField)
   if (result.errors && Object.keys(result.errors).length > 0)
     throw new Error(JSON.stringify(result.errors))
   return result[contactEmailField]

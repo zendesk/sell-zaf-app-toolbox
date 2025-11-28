@@ -25,7 +25,7 @@ export function useClientGet<T>(
       if (!client) {
         throw new Error('You forgot to use ZAFClientContext')
       }
-      const result = await client.get<{errors: object}>(path)
+      const result = await client.get<{ errors: object; [key: string]: any }>(path)
       setData(result[path])
       setFeedback({status: FeedbackStatus.success})
       if (result.errors && Object.keys(result.errors).length > 0) {

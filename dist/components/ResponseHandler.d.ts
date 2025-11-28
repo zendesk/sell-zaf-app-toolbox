@@ -1,10 +1,10 @@
 /// <reference types="react" />
 import { Response } from '../types';
-declare type StatusCheck = (response: Response<any>) => boolean;
+type StatusCheck = (response: Response<any>) => boolean;
 export declare const isLoading: StatusCheck;
 export declare const hasError: StatusCheck;
 export declare const isEmpty: StatusCheck;
-export declare function createCheckResponse<T>(responseArray: Array<Response<T>>): (check: StatusCheck, customCheck?: StatusCheck | undefined) => Response<T> | undefined;
+export declare function createCheckResponse<T>(responseArray: Array<Response<T>>): (check: StatusCheck, customCheck?: StatusCheck) => Response<T> | undefined;
 interface Props<T> {
     children: (data: T[]) => JSX.Element | null;
     response?: Response<T>;
