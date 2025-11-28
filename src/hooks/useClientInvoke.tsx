@@ -18,7 +18,10 @@ export function useClientInvoke<T>(
       if (!client) {
         throw new Error('You forgot to use ZAFClientContext')
       }
-      const result = await client.invoke<{errors: object}>(name, ...options)
+      const result = await client.invoke<{ errors: object; [key: string]: any }>(
+        name,
+        ...options,
+      )
       setData(result[name])
       setFeedback({status: FeedbackStatus.success})
       if (result.errors && Object.keys(result.errors).length > 0) {

@@ -12,7 +12,7 @@ export declare enum AppLocations {
     companyCard = "company_card",
     modal = "modal"
 }
-export declare type AppLocation = 'deal_card' | 'lead_card' | 'person_card' | 'company_card' | 'modal';
+export type AppLocation = 'deal_card' | 'lead_card' | 'person_card' | 'company_card' | 'modal';
 export interface Context {
     product: string;
     location: AppLocation;
