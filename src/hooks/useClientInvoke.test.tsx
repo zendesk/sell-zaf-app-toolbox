@@ -6,7 +6,10 @@ import useClientInvoke from './useClientInvoke'
 import flushPromises from '../test/flushPromises'
 import {Client, FeedbackStatus} from '../types'
 
-const Dummy = (prop: any) => <div />
+const Dummy = (props: any) => {
+  Object.keys(props)
+  return <div />
+}
 
 describe('useClientInvoke', () => {
   test('should call client.invoke with proper params', async () => {

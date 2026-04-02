@@ -27,7 +27,9 @@ const getSellContactEmail = async (
   if (!contactEmailField) {
     throw new Error(`Unsupported location: ${location}`)
   }
-  const result = await client.get<{ errors: object; [key: string]: any }>(contactEmailField)
+  const result = await client.get<{errors: object; [key: string]: any}>(
+    contactEmailField,
+  )
   if (result.errors && Object.keys(result.errors).length > 0)
     throw new Error(JSON.stringify(result.errors))
   return result[contactEmailField]
