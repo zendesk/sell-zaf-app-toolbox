@@ -9,7 +9,10 @@ import useClientGet from './useClientGet'
 import flushPromises from '../test/flushPromises'
 
 describe('useClientGet', () => {
-  const Dummy = (prop: any) => <div />
+  const Dummy = (props: any) => {
+    Object.keys(props)
+    return <div />
+  }
 
   test('should call client.get with proper params', async () => {
     const Wrapper = () => {

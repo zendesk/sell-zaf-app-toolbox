@@ -7,7 +7,10 @@ import {ZAFClientContextProvider} from '../providers/ZAFClientContext'
 import flushPromises from '../test/flushPromises'
 import {Client, FeedbackStatus} from '../types'
 
-const Dummy = (prop: any) => <div />
+const Dummy = (props: any) => {
+  Object.keys(props)
+  return <div />
+}
 
 const Wrapper = ({
   options = {},
@@ -149,7 +152,9 @@ describe('useClientRequest', () => {
 
     expect(client.request).not.toHaveBeenCalled()
 
-    tree.setProps({children: <Wrapper deps={[true]} />})
+    act(() => {
+      tree.setProps({children: <Wrapper deps={[true]} />})
+    })
 
     await flushPromises()
     tree.update()

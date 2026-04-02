@@ -1,6 +1,6 @@
 {
   "name": "@zendesk/sell-zaf-app-toolbox",
-  "version": "2.0.2",
+  "version": "2.0.4",
   "description": "A package for developers that streamlines the building of Zendesk App Framework apps for Sell",
   "main": "./dist/main.js",
   "types": "./dist/index.d.ts",
@@ -9,7 +9,7 @@
     "lint": "tslint --project tsconfig.json --fix",
     "build": "npm run clean && NODE_ENV=production webpack",
     "start": "webpack -w --env development",
-    "test": "jest --env=jsdom",
+    "test": "jest",
     "test-coverage": "jest --coverage"
   },
   "repository": {
@@ -38,6 +38,7 @@
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.12.1",
     "jest": "^30.2.0",
+    "jest-environment-jsdom": "^30.3.0",
     "prettier": "^1.18.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
@@ -59,32 +60,37 @@
     "js-yaml": "3.14.2"
   },
   "jest": {
-    "verbose": false,
+    "testEnvironment": "jsdom",
     "collectCoverageFrom": [
       "src/**/*.{ts,tsx}"
     ],
-    "globals": {
-      "API_URL": "idealwith",
-      "DEVELOPMENT": false
-    },
     "transform": {
       ".(ts|tsx)": "ts-jest"
     },
     "testMatch": [
       "<rootDir>/**/?(*.)(spec|test).ts?(x)"
     ],
+    "setupFiles": [
+      "<rootDir>/setupGlobals.ts"
+    ],
     "setupFilesAfterEnv": [
       "<rootDir>/setupTests.ts"
     ],
+    "moduleNameMapper": {
+      "^undici$": "<rootDir>/__mocks__/undici.js",
+      "^cheerio/lib/(.*)$": "<rootDir>/node_modules/cheerio/dist/commonjs/$1.js"
+    },
     "transformIgnorePatterns": [
       "node_modules/(?!(@zendeskgarden)/)"
     ],
+    "testEnvironmentOptions": {
+      "customExportConditions": ["require", "default", "node"]
+    },
     "moduleFileExtensions": [
       "ts",
       "tsx",
       "js",
       "json"
     ]
-  },
-  "keywords": []
+  }
 }

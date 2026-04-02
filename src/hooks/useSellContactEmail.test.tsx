@@ -41,7 +41,10 @@ const appContext: Context = {
 
 describe('useSellContactEmail', () => {
   const testEmail = 'test@email.com'
-  const Dummy = (prop: any) => <div />
+  const Dummy = (props: any) => {
+    Object.keys(props)
+    return <div />
+  }
   const Wrapper = () => {
     const {data, error, feedback} = useSellContactEmail()
     return <Dummy data={data} error={error} feedback={feedback} />
