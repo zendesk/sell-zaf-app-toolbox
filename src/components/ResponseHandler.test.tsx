@@ -105,9 +105,10 @@ describe('ResponseHandler', () => {
   })
 
   test('should render loading screen when one of responses has loading status', () => {
-    const responses = [FeedbackStatus.loading, FeedbackStatus.success].map(
-      (status) => setFeedbackStatus(status),
-    )
+    const responses = [
+      FeedbackStatus.loading,
+      FeedbackStatus.success,
+    ].map((status) => setFeedbackStatus(status))
 
     const component = mount(
       <ResponseHandler
@@ -125,9 +126,10 @@ describe('ResponseHandler', () => {
   })
 
   test('should render error screen when one of responses has error status', () => {
-    const responses = [FeedbackStatus.error, FeedbackStatus.success].map(
-      (status) => setFeedbackStatus(status),
-    )
+    const responses = [
+      FeedbackStatus.error,
+      FeedbackStatus.success,
+    ].map((status) => setFeedbackStatus(status))
 
     const component = mount(
       <ResponseHandler
@@ -267,9 +269,10 @@ describe('ResponseHandler', () => {
   })
 
   test('should render content screen when all responses have success status', () => {
-    const responses = [FeedbackStatus.success, FeedbackStatus.success].map(
-      (status) => setFeedbackStatus(status),
-    )
+    const responses = [
+      FeedbackStatus.success,
+      FeedbackStatus.success,
+    ].map((status) => setFeedbackStatus(status))
 
     const component = mount(
       <ResponseHandler
@@ -470,9 +473,9 @@ describe('checkResponse', () => {
     error,
     feedback,
   })
-  const mockResponses: Array<Response<number>> = Array.from({length: 5}).map(
-    (_, index: number) => generateResponse(index),
-  )
+  const mockResponses: Array<Response<number>> = Array.from({
+    length: 5,
+  }).map((_, index: number) => generateResponse(index))
   const checkResponse = createCheckResponse(mockResponses)
 
   test('check function should be called for each response until condition is met', () => {
